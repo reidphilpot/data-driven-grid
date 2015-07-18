@@ -1,6 +1,6 @@
 # Data Driven Grid
 
-This project aims to identify a potential data contract between server and client so a data grid can be defined in the service layer and rendered by a thin client.
+This project aims to identify an API that would enable a datagrid to be defined in the service layer and rendered by a thin client.
 
 The API should provide the following features:
 

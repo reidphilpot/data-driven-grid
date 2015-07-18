@@ -22,6 +22,14 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
 | editable  | false  | Make a field editable |
 | formula | false  | Implicitly defines a synthetic field. Any explicit values will be ignored, the client will attempt to calculate the value based on the formula |
 
+### Contextual options
+
+| Context | Option | Default | Description |
+|---|---|---|---|
+| Numeric data type | min | null | Minimum possible value
+|  | max | null | Maximum possible value
+|  | step | null | Step increment
+
 ### Example
 
 ``` json

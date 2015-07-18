@@ -1,0 +1,29 @@
+{
+  "name": "data-driven-grid",
+  "version": "0.0.0",
+  "authors": [
+    "Reid Philpot <reidphilpot@gmail.com>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-ui": "~1.11.4",
+    "moment": "~2.10.3",
+    "q": "~1.0.1",
+    "slickgrid": "~2.1.0",
+    "jquery": "~2.1.4",
+    "underscore": "~1.8.3",
+    "numeral": "~1.5.3",
+    "requirejs": "~2.1.19",
+    "jquery.threedubmedia": "git@github.com:threedubmedia/jquery.threedubmedia.git"
+  }
+}

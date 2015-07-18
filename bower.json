@@ -24,6 +24,8 @@
     "underscore": "~1.8.3",
     "numeral": "~1.5.3",
     "requirejs": "~2.1.19",
-    "jquery.threedubmedia": "git@github.com:threedubmedia/jquery.threedubmedia.git"
+    "jquery.threedubmedia": "git@github.com:threedubmedia/jquery.threedubmedia.git",
+    "require-css": "~0.1.8",
+    "mathjs": "~1.7.1"
   }
 }

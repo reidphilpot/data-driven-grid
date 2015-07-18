@@ -4,6 +4,7 @@
   , "field": "reset"
   , "name": "Reset Date"
   , "type": "Date"
+  , "mask": "MMMM Do YYYY"
   }
 , {
     "id": "value"
@@ -15,7 +16,6 @@
     "id": "tenor"
   , "field": "tenor"
   , "name": "Tenor"
-  , "type": "String"
   }
 , {
     "id": "maturity"
@@ -28,7 +28,7 @@
   , "field": "curve"
   , "name": "Yield"
   , "type": "Number"
-  , "mask": "0000.00"
+  , "mask": "00.0000"
   }
 , {
     "id": "yourCurve"
@@ -36,7 +36,7 @@
   , "name": "Your Curve"
   , "toolTip": "Decimal not percentage"
   , "type": "Number"
-  , "mask": "0000.00"
+  , "mask": "00.0000"
   , "editable": true
   , "min": 0
   , "max": 100
@@ -47,8 +47,7 @@
   , "field": "yourCurve100"
   , "name": "Your Curve as %"
   , "type": "Number"
-  , "mask": "0.000%"
-  , "synthetic": true
+  , "mask": "0.00%"
   , "formula": "{curve} / {yourCurve}"
   }
 , {
@@ -56,8 +55,7 @@
   , "field": "curveDiff"
   , "name": "Your Curve - Ours"
   , "type": "Number"
-  , "mask": "0000.00"
-  , "synthetic": true
+  , "mask": "00.0000"
   , "formula": "{yourCurve} - {curve}"
   }
 , {
@@ -66,7 +64,6 @@
   , "name": "Your Pos"
   , "toolTip": "Use the '+' to sell the FRA (received fixed) and '-' to buy the FRA (pay fixed)"
   , "type": "Number"
-  , "mask": "0000.00"
   , "editable": true
   }
 ]

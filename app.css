@@ -24,3 +24,9 @@ body {
 .text-right {
   text-align: right
 }
+
+.editor-text {
+  border: none;
+  outline: none;
+  width: 100%
+}

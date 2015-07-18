@@ -8,7 +8,7 @@ The API should provide the following features:
 * Provide data
 * Define how data should be formatted by the client
 * Allow certain fields to be editable
-* Specify data types in order to define how inputted values are validated
+* Define how inputted values are validated
 * Specify synthetic fields whose values are derived from other fields
 
 ## Define columns
@@ -31,6 +31,7 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
   , "field": "reset"
   , "name": "Reset Date"
   , "type": "Date"
+  , "mask": "MMMM Do YYYY"
   }
 , {
     "id": "value"
@@ -42,7 +43,6 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
     "id": "tenor"
   , "field": "tenor"
   , "name": "Tenor"
-  , "type": "String"
   }
 , {
     "id": "maturity"
@@ -55,7 +55,7 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
   , "field": "curve"
   , "name": "Yield"
   , "type": "Number"
-  , "mask": "0000.00"
+  , "mask": "00.0000"
   }
 , {
     "id": "yourCurve"
@@ -63,7 +63,7 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
   , "name": "Your Curve"
   , "toolTip": "Decimal not percentage"
   , "type": "Number"
-  , "mask": "0000.00"
+  , "mask": "00.0000"
   , "editable": true
   , "min": 0
   , "max": 100
@@ -74,7 +74,7 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
   , "field": "yourCurve100"
   , "name": "Your Curve as %"
   , "type": "Number"
-  , "mask": "0.000%"
+  , "mask": "0.00%"
   , "formula": "{curve} / {yourCurve}"
   }
 , {
@@ -82,7 +82,7 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
   , "field": "curveDiff"
   , "name": "Your Curve - Ours"
   , "type": "Number"
-  , "mask": "0000.00"
+  , "mask": "00.0000"
   , "formula": "{yourCurve} - {curve}"
   }
 , {
@@ -91,7 +91,6 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
   , "name": "Your Pos"
   , "toolTip": "Use the '+' to sell the FRA (received fixed) and '-' to buy the FRA (pay fixed)"
   , "type": "Number"
-  , "mask": "0000.00"
   , "editable": true
   }
 ]
@@ -157,10 +156,16 @@ Keys maps to `column.field` in the column definition.
 
 ## Formulas
 
-Provide any mathematical expression, define variable by wrapping them in curly braces. Be as verbose as you like:
+Provide any mathematical expression, define variables by wrapping them in curly braces:
+
+``` {field1} / {field2} * 100 ```
 
 ``` 1.2 * (2 + 4.5) ```
 
 ``` sin(45 deg) ^ 2 ```
 
-``` {field1} / {field2} * 100 ```
+## Installation
+
+``` shell
+> npm install && bower install
+```

@@ -2,22 +2,25 @@ define(
   [ 'moment'
   , 'numeral'
   , 'mathjs'
-  , 'slickGrid'
-  , 'slickEditors'
+  , 'slickgrid'
+  , 'slickeditors'
   ]
 , function(moment, numeral, math) {
 
+    var locale = window.navigator.userLanguage || window.navigator.language
+
     function dateFormatter(row, cell, value, columnDef, dataContext) {
-      return moment(value).format('ll')
+      return moment(value).locale(locale).format(columnDef.mask || 'll')
     }
 
     function numberFormatter(row, cell, value, columnDef, dataContext) {
+      if (columnDef.formula) value = calculate(columnDef.formula, dataContext)
+      if(value == null) return ''
       return numeral(value).format(columnDef.mask)
     }
 
     function nullGuard(formatter) {
       return function(row, cell, value, columnDef, dataContext) {
-        if(columnDef.formula) return calculate(columnDef.formula, dataContext)
         if(value == null) return ''
         return formatter.apply(this, arguments)
       }
@@ -26,9 +29,11 @@ define(
     function calculate(formula, dataContext) {
       var parsedFormula = formula.replace(/{(.*?)}/g, extractVariables)
 
-      if(parsedFormula.search('undefined') > -1) return ''
+      if(parsedFormula.search('undefined') > -1) return null
 
-      return math.eval(parsedFormula)
+      var result = math.eval(parsedFormula)
+
+      return isNaN(result) || result === Infinity ? null : result
 
       function extractVariables(match, p1, p2, p3, offset, string) {
         // p1 is nondigits, p2 digits, and p3 non-alphanumerics
@@ -41,7 +46,7 @@ define(
         formatter: nullGuard(dateFormatter)
       }
     , 'Number': {
-        formatter: nullGuard(numberFormatter)
+        formatter: numberFormatter
       , cssClass: 'text-right'
       , editor: Slick.Editors.Integer
       }

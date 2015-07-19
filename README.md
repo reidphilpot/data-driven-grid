@@ -10,6 +10,7 @@ The API should provide the following features:
 * Allow certain fields to be editable
 * Define how inputted values are validated
 * Specify synthetic fields whose values are derived from other fields
+* Define a multiplier for editable numeric fields
 
 ## Define columns
 
@@ -19,8 +20,8 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
 |---|---|---|
 | type  | String | Data types tell the client which formatter to use and how to validate editable fields. |
 | mask  | null | A `Number` can be formatted to look like currency, percentages, times, or even plain old numbers with decimal places, thousands, and abbreviations. A `Date` can be formatted explicitly or left undefined for the client to attempt to format for the locale |
-| editable  | false  | Make a field editable |
-| formula | false  | Implicitly defines a synthetic field. Any explicit values will be ignored, the client will attempt to calculate the value based on the formula |
+| editable  | false | Make a field editable |
+| formula | false | Implicitly defines a synthetic field. Any explicit values will be ignored, the client will attempt to calculate the value based on the formula |
 
 ### Contextual options
 
@@ -29,6 +30,7 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
 | Numeric data type | min | null | Minimum possible value
 |  | max | null | Maximum possible value
 |  | step | 1 | Step increment
+|  | multiplier | null | Multiply underlying value by this
 
 ### Example
 
@@ -83,7 +85,7 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
   , "name": "Your Curve as %"
   , "type": "Number"
   , "mask": "0.00%"
-  , "formula": "curve / yourCurve * 100"
+  , "formula": "yourCurve / curve * 100"
   }
 , {
     "id": "curveDiff"
@@ -100,6 +102,8 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
   , "toolTip": "Use the '+' to sell the FRA (received fixed) and '-' to buy the FRA (pay fixed)"
   , "type": "Number"
   , "editable": true
+  , "multiplier": 1000000
+  , "mask": "0,0"
   }
 ]
 ```
@@ -164,7 +168,7 @@ Keys maps to `column.field` in the column definition.
 
 ## Formulas
 
-Provide any mathematical expression. The grid will parse and evaluate valid data fields. e.g:
+Provide any mathematical expression. The grid will parse and evaluate valid data fields, e.g:
 
 ``` curve / yourCurve * 100 ```
 

@@ -14,8 +14,13 @@ define(
 
     function numberFormatter(row, cell, value, columnDef, dataContext) {
       if (columnDef.formula) value = calculate(columnDef.formula, dataContext)
-      if(value == null) return ''
-      return numeral(value).format(columnDef.mask)
+      if (value == null) return ''
+      if (columnDef.multiplier) value = math.chain(value).multiply(columnDef.multiplier).done()
+      try {
+        return numeral(value).format(columnDef.mask)
+      } catch(e) {
+        return ''
+      }
     }
 
     function nullGuard(formatter) {

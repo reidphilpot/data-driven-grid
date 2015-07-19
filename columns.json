@@ -48,7 +48,7 @@
   , "name": "Your Curve as %"
   , "type": "Number"
   , "mask": "0.00%"
-  , "formula": "curve / yourCurve * 100"
+  , "formula": "yourCurve / curve * 100"
   }
 , {
     "id": "curveDiff"
@@ -65,5 +65,7 @@
   , "toolTip": "Use the '+' to sell the FRA (received fixed) and '-' to buy the FRA (pay fixed)"
   , "type": "Number"
   , "editable": true
+  , "multiplier": 1000000
+  , "mask": "0,0"
   }
 ]

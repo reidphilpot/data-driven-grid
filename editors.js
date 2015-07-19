@@ -42,7 +42,7 @@ define(
       }
 
       this.serializeValue = function () {
-        return $input.val()
+        return new Number($input.val())
       }
 
       this.applyValue = function (item, state) {

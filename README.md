@@ -1,6 +1,6 @@
 # Data Driven Grid
 
-This project aims to identify an API that would enable a datagrid to be defined in the service layer and rendered by a thin client.
+This project aims to identify a JSON contract that would enable a datagrid to be defined in the service layer and rendered by a thin client.
 
 The API should provide the following features:
 
@@ -83,7 +83,7 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
   , "name": "Your Curve as %"
   , "type": "Number"
   , "mask": "0.00%"
-  , "formula": "{yourCurve} / {curve} * 100"
+  , "formula": "curve / yourCurve * 100"
   }
 , {
     "id": "curveDiff"
@@ -91,7 +91,7 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
   , "name": "Your Curve - Ours"
   , "type": "Number"
   , "mask": "0.0000"
-  , "formula": "{yourCurve} - {curve}"
+  , "formula": "yourCurve - curve"
   }
 , {
     "id": "yourPos"
@@ -164,9 +164,9 @@ Keys maps to `column.field` in the column definition.
 
 ## Formulas
 
-Provide any mathematical expression, define variables by wrapping them in curly braces:
+Provide any mathematical expression. The grid will parse and evaluate valid data fields. e.g:
 
-``` {columnId1} / {columnId2} * 100 ```
+``` curve / yourCurve * 100 ```
 
 ``` 1.2 * (2 + 4.5) ```
 

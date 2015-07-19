@@ -26,17 +26,13 @@ define(
     }
 
     function calculate(formula, dataContext) {
-      var parsedFormula = formula.replace(/{(.*?)}/g, extractVariables)
+      var node = math.parse(formula)
+      var code = node.compile(math)
 
-      if(parsedFormula.search('undefined') > -1) return null
-
-      var result = math.eval(parsedFormula)
-
-      return isNaN(result) || result === Infinity ? null : result
-
-      function extractVariables(match, p1, p2, p3, offset, string) {
-        // p1 is nondigits, p2 digits, and p3 non-alphanumerics
-        return dataContext[p1]
+      try {
+        return code.eval(dataContext)
+      } catch(e) {
+        return null
       }
     }
 

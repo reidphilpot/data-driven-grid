@@ -2,10 +2,9 @@ define(
   [ 'moment'
   , 'numeral'
   , 'mathjs'
-  , 'slickgrid'
-  , 'slickeditors'
+  , './editors'
   ]
-, function(moment, numeral, math) {
+, function(moment, numeral, math, editors) {
 
     var locale = window.navigator.userLanguage || window.navigator.language
 
@@ -48,7 +47,7 @@ define(
     , 'Number': {
         formatter: numberFormatter
       , cssClass: 'text-right'
-      , editor: Slick.Editors.Integer
+      , editor: editors.number
       }
     }
 

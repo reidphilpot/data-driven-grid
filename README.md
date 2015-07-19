@@ -28,7 +28,7 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
 |---|---|---|---|
 | Numeric data type | min | null | Minimum possible value
 |  | max | null | Maximum possible value
-|  | step | null | Step increment
+|  | step | 1 | Step increment
 
 ### Example
 
@@ -63,7 +63,7 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
   , "field": "curve"
   , "name": "Yield"
   , "type": "Number"
-  , "mask": "00.0000"
+  , "mask": "0.0000"
   }
 , {
     "id": "yourCurve"
@@ -71,7 +71,7 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
   , "name": "Your Curve"
   , "toolTip": "Decimal not percentage"
   , "type": "Number"
-  , "mask": "00.0000"
+  , "mask": "0.0000"
   , "editable": true
   , "min": 0
   , "max": 100
@@ -83,14 +83,14 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
   , "name": "Your Curve as %"
   , "type": "Number"
   , "mask": "0.00%"
-  , "formula": "{curve} / {yourCurve}"
+  , "formula": "{yourCurve} / {curve} * 100"
   }
 , {
     "id": "curveDiff"
   , "field": "curveDiff"
   , "name": "Your Curve - Ours"
   , "type": "Number"
-  , "mask": "00.0000"
+  , "mask": "0.0000"
   , "formula": "{yourCurve} - {curve}"
   }
 , {
@@ -166,7 +166,7 @@ Keys maps to `column.field` in the column definition.
 
 Provide any mathematical expression, define variables by wrapping them in curly braces:
 
-``` {field1} / {field2} * 100 ```
+``` {columnId1} / {columnId2} * 100 ```
 
 ``` 1.2 * (2 + 4.5) ```
 

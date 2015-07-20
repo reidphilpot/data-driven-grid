@@ -21,7 +21,7 @@ An array of Objects that describe a column, based on [SlickGrid's column definit
 | type  | String | Data types tell the client which formatter to use and how to validate editable fields. |
 | mask  | null | A `Number` can be formatted to look like currency, percentages, times, or even plain old numbers with decimal places, thousands, and abbreviations. A `Date` can be formatted explicitly or left undefined for the client to attempt to format for the locale |
 | editable  | false | Make a field editable |
-| formula | false | Implicitly defines a synthetic field. Any explicit values will be ignored, the client will attempt to calculate the value based on the formula |
+| formula | null | Implicitly defines a synthetic field. Any explicit values will be ignored, the client will attempt to calculate the value based on the formula |
 
 ### Contextual options
 

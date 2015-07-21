@@ -20,7 +20,7 @@ define(
 
   function merge(columns) {
     return columns.map(function(column) {
-      return _.extend(column, {}, dataTypes[column['type']])
+      return _.extend({}, column, dataTypes[column['type']])
     })
   }
 
